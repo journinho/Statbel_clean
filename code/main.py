@@ -11,7 +11,6 @@ df = pd.read_csv(url, sep='|', encoding = "ISO-8859-1")
 #delete columns in french
 df = df.drop(['TX_ADM_DSTR_DESCR_FR','TX_DESCR_FR', 'TX_RGN_DESCR_FR', 'TX_PROV_DESCR_FR', 'TX_NATLTY_FR', 'TX_CIV_STS_FR' ], axis=1)
 
-df.head()
 
 # # Leeftijdspiramide
 
@@ -29,7 +28,7 @@ bevolking_per_gemeente = pd.pivot_table(df, index=["TX_DESCR_NL", "CD_REFNIS"], 
 bevolking_per_gemeente.rename(columns={"TX_DESCR_NL":"Gemeente", "MS_POPULATION": "Aantal", "CD_REFNIS":"NSI-code"}, inplace=True)
 bevolking_per_gemeente.to_csv('bevolkingsaantal_per_gemeente.csv')
 
-bevolking_per_gemeente
+
 
 bevolking_per_gemeente_geslacht = pd.pivot_table(df, index=["TX_DESCR_NL", "CD_REFNIS"], columns="CD_SEX", values='MS_POPULATION', aggfunc='sum').reset_index()
 bevolking_per_gemeente_geslacht.rename(columns={"TX_DESCR_NL":"Gemeente", "MS_POPULATION": "Aantal", "CD_REFNIS":"NSI-code", "F":"Vrouw", "M":"Man"}, inplace=True)
