@@ -18,7 +18,7 @@ df = df.drop(['TX_ADM_DSTR_DESCR_FR','TX_DESCR_FR', 'TX_RGN_DESCR_FR', 'TX_PROV_
 leeftijd_per_geslacht = pd.pivot_table(df, index='CD_AGE', columns='CD_SEX', values='MS_POPULATION', aggfunc='sum').reset_index()
 leeftijd_per_geslacht.rename(columns = {'CD_AGE':'Leeftijd', 'F':'Vrouw', 'M':'Man'}, inplace = True)
 leeftijd_per_geslacht.set_index("Leeftijd", inplace=True)
-leeftijd_per_geslacht.to_csv('Bevolking/Bevolkingsaantal_per_leeftijd_geslacht.csv')
+leeftijd_per_geslacht.to_csv('data/1_bevolking/Bevolkingsaantal_per_leeftijd_geslacht.csv')
 leeftijd_per_geslacht
 
 # # Bevolkingsaantal per gemeente
@@ -26,13 +26,13 @@ leeftijd_per_geslacht
 
 bevolking_per_gemeente = pd.pivot_table(df, index=["TX_DESCR_NL", "CD_REFNIS"], values='MS_POPULATION', aggfunc='sum').reset_index()
 bevolking_per_gemeente.rename(columns={"TX_DESCR_NL":"Gemeente", "MS_POPULATION": "Aantal", "CD_REFNIS":"NSI-code"}, inplace=True)
-bevolking_per_gemeente.to_csv('Bevolking/bevolkingsaantal_per_gemeente.csv')
+bevolking_per_gemeente.to_csv('data/1_bevolking/bevolkingsaantal_per_gemeente.csv')
 
 
 
 bevolking_per_gemeente_geslacht = pd.pivot_table(df, index=["TX_DESCR_NL", "CD_REFNIS"], columns="CD_SEX", values='MS_POPULATION', aggfunc='sum').reset_index()
 bevolking_per_gemeente_geslacht.rename(columns={"TX_DESCR_NL":"Gemeente", "MS_POPULATION": "Aantal", "CD_REFNIS":"NSI-code", "F":"Vrouw", "M":"Man"}, inplace=True)
-bevolking_per_gemeente_geslacht.to_csv('Bevolking/bevolkingsaantal_per_gemeente_geslacht.csv')
+bevolking_per_gemeente_geslacht.to_csv('data/1_bevolking/bevolkingsaantal_per_gemeente_geslacht.csv')
 bevolking_per_gemeente_geslacht
 
 
